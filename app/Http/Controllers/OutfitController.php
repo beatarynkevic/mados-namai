@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Outfit;
+use App\Models\Master;
 use Illuminate\Http\Request;
 
 class OutfitController extends Controller
@@ -24,7 +25,8 @@ class OutfitController extends Controller
      */
     public function create()
     {
-        //
+        $masters = Master::all();
+       return view('outfit.create', ['masters' => $masters]);
     }
 
     /**
