@@ -24,7 +24,7 @@ class MasterController extends Controller
      */
     public function create()
     {
-        //
+        return view('master.create');
     }
 
     /**
@@ -35,7 +35,11 @@ class MasterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $master = new Master;
+        $master->name = $request->master_name;
+        $master->surname = $request->master_surname;
+        $master->save();
+        return redirect()->route('master.index');
     }
 
     /**
