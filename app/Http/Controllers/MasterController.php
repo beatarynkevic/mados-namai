@@ -14,7 +14,8 @@ class MasterController extends Controller
      */
     public function index()
     {
-        //
+        $masters = Master::all();
+       return view('master.index', ['masters' => $masters]);
     }
 
     /**
@@ -61,7 +62,7 @@ class MasterController extends Controller
      */
     public function edit(Master $master)
     {
-        //
+        return view('master.edit', ['master' => $master]);
     }
 
     /**
@@ -73,7 +74,10 @@ class MasterController extends Controller
      */
     public function update(Request $request, Master $master)
     {
-        //
+        $master->name = $request->master_name;
+        $master->surname = $request->master_surname;
+        $master->save();
+        return redirect()->route('master.index');
     }
 
     /**
@@ -84,6 +88,7 @@ class MasterController extends Controller
      */
     public function destroy(Master $master)
     {
-        //
+        $master->delete();
+        return redirect()->route('master.index');
     }
 }
