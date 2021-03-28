@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class MasterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -88,7 +92,11 @@ class MasterController extends Controller
      */
     public function destroy(Master $master)
     {
+        if($master->masterOutfits->count()){
+            return 'Trinti negalima, nes turi knygų';
+        }
         $master->delete();
         return redirect()->route('master.index');
+ 
     }
 }
