@@ -7,4 +7,17 @@
             margin: 5px;
         }
     }
+    &__outfits {
+        display: flex;
+        flex-direction: column;
+        &__type {
+            font-weight: bold;
+        }
+        &__master {
+            color: gray;
+            font-size: 80%;
+            font-style:italic;
+        }
+        
+    }
 }

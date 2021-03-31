@@ -10955,4 +10955,19 @@ a.text-dark:focus {
   margin: 5px;
 }
 
+.list-line__outfits {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-line__outfits__type {
+  font-weight: bold;
+}
+
+.list-line__outfits__master {
+  color: gray;
+  font-size: 80%;
+  font-style: italic;
+}
+
 
