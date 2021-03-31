@@ -16,7 +16,7 @@
                                 <a href="{{route('master.edit',[$master])}}" class="btn btn-info">EDIT</a>
                                 <form method="POST" action="{{route('master.destroy', [$master])}}">
                                     @csrf
-                                    <button type="button" class="btn btn-danger">DELETE</button>
+                                    <button type="submit" class="btn btn-danger">DELETE</button>
                                 </form>
                             </div>
                         </li>

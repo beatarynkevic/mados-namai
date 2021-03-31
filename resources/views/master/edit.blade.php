@@ -6,11 +6,21 @@
             <div class="card">
                 <div class="card-header">Edit master</div>
                 <div class="card-body">
+
                     <form method="POST" action="{{route('master.update',[$master->id])}}">
-                        Name: <input type="text" name="master_name" value="{{$master->name}}">
-                        Surname: <input type="text" name="master_surname" value="{{$master->surname}}">
+                        <div class="form-group">
+                            <label>Name: </label>
+                            <input type="text" class="form-control" name="master_name" value="{{$master->name}}">
+                            <small class="form-text text-muted">Please enter master name</small>
+                        </div>
+                        <div class="form-group">
+
+                            <label>Surname: </label>
+                            <input type="text" class="form-control" name="master_surname" value="{{$master->surname}}">
+                            <small class="form-text text-muted">Please enter master surname</small>
+                        </div>
                         @csrf
-                        <button type="submit">EDIT</button>
+                        <button type="submit" class="btn btn-info">EDIT</button>
                     </form>
                 </div>
             </div>

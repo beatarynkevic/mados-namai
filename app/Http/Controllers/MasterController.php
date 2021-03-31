@@ -41,7 +41,7 @@ class MasterController extends Controller
     public function store(Request $request)
     {
         Master::create($request);
-        return redirect()->route('master.index');
+        return redirect()->route('master.index')->with('success_message', 'The Master has been created');
     }
 
     /**
@@ -90,10 +90,10 @@ class MasterController extends Controller
     public function destroy(Master $master)
     {
         if($master->masterOutfits->count()){
-            return 'Trinti negalima, nes turi knygų';
+            return redirect()->route('master.index')->with('info_message', 'The Master is immortal');
         }
         $master->delete();
-        return redirect()->route('master.index');
+        return redirect()->route('master.index')->with('info_message', 'The master has been deleted');
  
     }
 }
