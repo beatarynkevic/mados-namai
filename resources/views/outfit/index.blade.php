@@ -4,7 +4,22 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Outfits list</div>
+                <div class="card-header">
+                    <h2>Outfits list</h2>
+                    <form action="{{route('master.index')}}" method="get">
+                        <div class="form-group">
+                            <label>Author: </label>
+                            <select name="master_id" class="form-control">
+                                @foreach ($masters as $master)
+                                <option value="{{$master->id}}">
+                                    {{$master->name}} {{$master->surname}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </form>
+                    <a href="{{route('master.index')}}" class="btn btn-info">Default</a>
+                </div>
                 <div class="card-body">
                     <ul class="list-group">
                         @foreach ($outfits as $outfit)

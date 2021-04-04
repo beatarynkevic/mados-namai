@@ -10970,4 +10970,19 @@ a.text-dark:focus {
   font-style: italic;
 }
 
+.make-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.make-inline select,
+.make-inline label {
+  margin: 0 8px;
+}
+
+.make-inline.form-group {
+  margin-bottom: 0;
+}
+
 
