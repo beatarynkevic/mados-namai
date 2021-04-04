@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Master;
 use Illuminate\Http\Request;
+use Validator;
 
 class MasterController extends Controller
 {
@@ -16,9 +17,17 @@ class MasterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $masters = Master::all();
+
+        if ('name' == $request->sort) {
+            $masters = Master::orderBy('name')->get();
+         } elseif ('surname' == $request->sort) {
+             $masters = Master::orderBy('surname')->get();
+         } else {
+             $masters = Master::all();
+         }
+
        return view('master.index', ['masters' => $masters]);
     }
 
@@ -40,6 +49,21 @@ class MasterController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(),
+        [
+        'master_name' => ['required', 'min:3', 'max:64','alpha'],
+        'master_surname' => ['required', 'min:3', 'max:64', 'alpha'],
+        ],
+        [
+        'master_surname.min' => 'per trumpa pavarde',
+        'master_name.min' => 'per trumpas vardas'
+        ]
+        );
+        if ($validator->fails()) {
+        $request->flash();
+        return redirect()->back()->withErrors($validator);
+        }
         Master::create($request);
         return redirect()->route('master.index')->with('success_message', 'The Master has been created');
     }
@@ -75,10 +99,25 @@ class MasterController extends Controller
      */
     public function update(Request $request, Master $master)
     {
+
+        $validator = Validator::make($request->all(),
+        [
+        'master_name' => ['required', 'min:3', 'max:64'],
+        'master_surname' => ['required', 'min:3', 'max:64'],
+        ],
+        [
+        'master_surname.min' => 'mano zinute'
+        ]
+        );
+        if ($validator->fails()) {
+        $request->flash();
+        return redirect()->back()->withErrors($validator);
+        }
+
         $master->name = $request->master_name;
         $master->surname = $request->master_surname;
         $master->save();
-        return redirect()->route('master.index');
+        return redirect()->route('master.index')->with('success_message', 'Master had been updated');;
     }
 
     /**
